@@ -253,15 +253,16 @@
         }
     }
 
-    @media only screen and (min-wdith: 768px) {
-        .permalinkpage .grid article .type_photo img {
+    @media only screen and (min-width: 768px) {
+        .permalinkpage article .content_permal {
             width: 49.9%;
+            display: inline-block;
         }
     }
 
     @media only screen and (min-width: 768px) {
-        .grid article,
-        .grid .grid-sizer {
+        .indexpage .grid article,
+        .indexpage .grid .grid-sizer {
             width: 49.9%;
         }
 
@@ -303,8 +304,6 @@
         background: #f1f1f1;
         padding: 12px 12px;
     }
-
-
 
     @media only screen and (min-width: 768px) {
         article .content-bk {
@@ -373,6 +372,53 @@
         font-size: 0.9em;
         display: inline-block;
         margin-right: 6px;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .post-meta-wrap {
+            float: right;
+            margin: 0;
+            width: 49.9%;
+        }
+    }
+
+    .post-meta_permal {
+        text-align: left;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .post-meta_permal{
+            padding-left: 22px;
+        }
+    }
+
+    .post-meta_permal h2 {
+        font-weight: 400;
+        font-size: 1.22em;
+        margin-top: 12px;
+        font-style: italic;
+    }
+
+    .post-meta_permal .notes {
+        list-style: none;
+        font-size: 0.8em;
+    }
+
+    .post-meta_permal .notes li {
+        border-bottom: 1px solid #eee;
+        margin-top: 6px;
+    }
+
+    .post-meta_permal .notes .note .action {
+        vertical-align: 4px;
+        margin: 0 6px;
+    }
+
+    .post-meta_permal .notes .note .avatar {
+        max-width: 20px;
+        border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
     }
 
     /* answer */
@@ -597,7 +643,7 @@
               <article id="{PostID}" class="type_{PostType} {TagsAsClasses}" rel="{ReblogURL}">
 
               <div class="content clearfix">
-              <div class="{block:IndexPage}content-bk{/block:IndexPage}"
+              <div class="{block:IndexPage}content-bk{/block:IndexPage} {block:Permalinkpage}content_permal{/block:Permalinkpage}"
 
                   {block:Text}
                   <!-- text post -->
@@ -743,6 +789,31 @@
                     {/block:Date}
 
                 </div>
+
+                <div class="{block:Permalinkpage}post-meta-wrap{/block:Permalinkpage}">
+                {block:Date}
+                 {block:Permalinkpage}
+			            <div class="post-meta_permal clearfix">
+			                <div class="date {select:Date}">
+			                    <time datetime="{Year}-{MonthNumber}-{DayOfMonth}" pubdate="pubdate" class="uk">{DayOfMonthWithZero} {ShortMonth}, {Year}</time>
+			                </div>
+			                {block:Tags}
+			                <ul class="tag">
+			                    <li><a href="{TagURL}" class="tag">{Tag}</a></li>
+			                </ul>
+			                {/block:Tags}
+
+			                {block:NoteCount}
+			                <h2>{NoteCountwithLabel}</h2>
+			                {/block:NoteCount}
+
+			                {block:PostNotes} {PostNotes-16} {/block:PostNotes}
+			            </div>
+			       {/block:Permalinkpage}
+
+			     {/block:Date}
+                </div>
+
                 </div>
 
               </article>
