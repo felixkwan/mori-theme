@@ -242,8 +242,21 @@
         width: 100%;
     }
 
-    .grid article.type_photo figure img {
-        width: 100%;
+    .permalinkpage article .content {
+        line-height: 32px;
+        padding: 0 20px;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        .permalinkpage article .content {
+            padding: 0 12px;
+        }
+    }
+
+    @media only screen and (min-wdith: 768px) {
+        .permalinkpage .grid article .type_photo img {
+            width: 49.9%;
+        }
     }
 
     @media only screen and (min-width: 768px) {
@@ -252,15 +265,15 @@
             width: 49.9%;
         }
 
-        .grid article.type_photo img,
-        .grid .grid-sizer.type_photo img {
+        .indexpage .grid article.type_photo img,
+        .indexpage .grid .grid-sizer.type_photo img {
             width: 100%;
         }
     }
 
     @media only screen and (min-width: 1024px) {
-        .grid article,
-        .grid .grid-sizer {
+        .indexpage .grid article,
+        .indexpage .grid .grid-sizer {
             width: 20%;
         }
     }
@@ -583,7 +596,7 @@
 
               <article id="{PostID}" class="type_{PostType} {TagsAsClasses}" rel="{ReblogURL}">
 
-              <div class="{block:IndexPage}content{/block:IndexPage} clearfix">
+              <div class="content clearfix">
               <div class="{block:IndexPage}content-bk{/block:IndexPage}"
 
                   {block:Text}
