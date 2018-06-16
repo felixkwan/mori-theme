@@ -15,7 +15,7 @@
     <script src="http://static.tumblr.com/e6lc7yi/hRfmidqdw/modernizr.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.0b2.120519/jquery.infinitescroll.min.js"></script>
+<script type="text/javascript" src="http://static.tumblr.com/0xll37k/6QRn49wdh/infinitescroll.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.2/masonry.pkgd.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
 
@@ -525,6 +525,9 @@
         background: #363636;
     }
 
+    #infscr-loading {
+        display: none !important;
+    }
 
       {CustomCSS}
     </style>
@@ -798,16 +801,16 @@
 $(function() {
     var msnry;
     var imgLoad;
-    var $tumblelog = $('.indexpage');
+    var $tumblelog = $('.grid');
     var content = document.getElementById("content");
-    msnry = new Masonry(".indexpage",{itemSelector:"article"});   //Initialise Masonry
-    imgLoad = imagesLoaded(".indexpage");
+    msnry = new Masonry(".indexpage",{itemSelector:"article", percentPosition: true});   //Initialise Masonry
+    imgLoad = imagesLoaded(".grid");
     imgLoad.on('always', function(){
         content.style.opacity = "1";    //appears the content block once initial images are loaded
     });
     imgLoad.on('progress', function(instance, image){
-        $(image.img).closest('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.layout();}});    //Grids up photosets nicely
-        msnry.layout();
+        $(image.img).closest('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.masonry('layout');}});    //Grids up photosets nicely
+        msnry.masonry('layout');
     });
     $(window).load(function(){      //Waits a sec before running infinite scroll
         $tumblelog.infinitescroll({ //Initialises the infinite scroll
@@ -821,8 +824,8 @@ $(function() {
             var $newElems = $(newElements).css({opacity:0});
             $newElems.imagesLoaded(function(){
                 msnry.appended($newElems);
-                $('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.layout();}});
-                msnry.layout();
+                $('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.masonry('layout');}});
+                msnry.masonry('layout');
                 $newElems.animate({opacity:1});
             });
         });
