@@ -349,6 +349,27 @@
         width: auto;
     }
 
+    .pagination-wrap {
+        position: relative;
+        margin: 24px 0;
+        padding: 0;
+        display:none;
+    }
+
+    .pagination li {
+        display: inline-block;
+    }
+
+    .pagination .next-page {
+        float: left;
+        text-align: left;
+    }
+
+    .pagination .previous-page {
+        float: right;
+        text-align: right;
+    }
+
     /* post-meta */
 
     .post-meta_home {
@@ -399,6 +420,19 @@
         font-style: italic;
     }
 
+    @media only screen and (max-width: 768px) {
+        .post-meta_permal .tags li {
+            display: inline-block;
+            margin-right: 12px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .post-meta_permal .notes li:last-child {
+            margin-right: 0;
+        }
+    }
+
     .post-meta_permal .notes {
         list-style: none;
         font-size: 0.8em;
@@ -419,6 +453,23 @@
         border-radius: 100%;
         -moz-border-radius: 100%;
         -webkit-border-radius: 100%;
+    }
+
+    .pagination_permal li {
+        display: inline- block;
+    }
+
+    .pagination_permal li a {
+        color: #ccc;
+    }
+
+    .pagination_permal li a:hover {
+        color: #363636;
+    }
+
+    .pagination_permal .previous-post {
+        float: right;
+        text-align: right;
     }
 
     /* answer */
@@ -486,29 +537,6 @@
     article.type_audio .tumblr_audio_player,
     article.type_audio .soundcloud_audio_player {
         width: 100%;
-    }
-
-    /* pagination */
-
-    .pagination-wrap {
-        position: relative;
-        margin: 24px 0;
-        padding: 0;
-        display:none;
-    }
-
-    .pagination li {
-        display: inline-block;
-    }
-
-    .pagination .next-page {
-        float: left;
-        text-align: left;
-    }
-
-    .pagination .previous-page {
-        float: right;
-        text-align: right;
     }
 
     /* footer */
@@ -588,6 +616,45 @@
         display: none !important;
     }
 
+    /* fadeIn */
+
+    .fadein {
+        -webkit-animation: fadein 2.5s ease; /* Safari, Chrome and Opera > 12.1*/
+       -moz-animation: fadein 2.5s ease; /* Firefox < 16 */
+        -ms-animation: fadein 2.5s ease; /* Internet Explorer */
+         -o-animation: fadein 2.5s ease; /* Opera < 12.1 */
+            animation: fadein 2.5s ease;
+    }
+
+    @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+    }
+
+    /* Firefox < 16 */
+    @-moz-keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    /* Safari, Chrome and Opera > 12.1 */
+    @-webkit-keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    /* Internet Explorer */
+    @-ms-keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    /* Opera < 12.1 */
+    @-o-keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
       {CustomCSS}
     </style>
   </head>
@@ -640,7 +707,7 @@
 
           {block:Posts}
 
-              <article id="{PostID}" class="type_{PostType} {TagsAsClasses}" rel="{ReblogURL}">
+              <article id="{PostID}" class="fadein type_{PostType} {TagsAsClasses}" rel="{ReblogURL}">
 
               <div class="content clearfix">
               <div class="{block:IndexPage}content-bk{/block:IndexPage} {block:Permalinkpage}content_permal{/block:Permalinkpage}"
@@ -725,7 +792,7 @@
                         {Quote}
                       </div>
 
-                      {block:Source}<div class="quote-author">-&nbsp;{Source}</div>{/block:Source}
+                      {block:Source}<div class="quote-author">&ndash;&nbsp;{Source}</div>{/block:Source}
                     {/block:Quote}
 
                     {block:Answer}
@@ -797,11 +864,23 @@
 			                <div class="date {select:Date}">
 			                    <time datetime="{Year}-{MonthNumber}-{DayOfMonth}" pubdate="pubdate" class="uk">{DayOfMonthWithZero} {ShortMonth}, {Year}</time>
 			                </div>
-			                {block:Tags}
-			                <ul class="tag">
-			                    <li><a href="{TagURL}" class="tag">{Tag}</a></li>
+
+			                <ul class="tags">
+			                    {block:Tags}<li><a href="{TagURL}" class="tag">#{Tag}</a></li>{/block:Tags}
 			                </ul>
-			                {/block:Tags}
+			                {block:PermalinkPagination}
+			                    <ul class="pagination_permal">
+			                    {block:PreviousPost}
+			                    <li class="previous-post"><a href="{PreviousPost}">Previous Post &nbsp;<i class="fas fa-caret-right"></i></a></li>
+			                    {/block:PreviousPost}
+
+			                    {block:NextPost}
+			                    <li class="newer-post"><a href="{NextPost}"><i class="fas fa-caret-left"></i>&nbsp; Newer Post</a></li>
+			                    {/block:NextPost}
+
+			                </ul>
+			                {/block:PermalinkPagination}
+
 
 			                {block:NoteCount}
 			                <h2>{NoteCountwithLabel}</h2>
