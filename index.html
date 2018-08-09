@@ -965,9 +965,9 @@
 $(function() {
     var msnry;
     var imgLoad;
-    var $tumblelog = $('.grid');
+    var $tumblelog = $('.indexpage .grid');
     var content = document.getElementById("content");
-    msnry = new Masonry(".indexpage",{itemSelector:"article", percentPosition: true});   //Initialise Masonry
+    msnry = new Masonry(".indexpage .grid",{itemSelector:"article", percentPosition: true});   //Initialise Masonry
     imgLoad = imagesLoaded(".grid");
     imgLoad.on('always', function(){
         content.style.opacity = "1";    //appears the content block once initial images are loaded
@@ -981,7 +981,7 @@ $(function() {
         navSelector: ".pagination",
         nextSelector: ".pagination a:last-child",
         itemSelector: "article",
-        bufferPx: 2000, //Since photosets can get quite long, and this is a 3 column theme, the buffer is extra long to stop people from having to scroll up too much
+        bufferPx: 2400, //Since photosets can get quite long, and this is a 3 column theme, the buffer is extra long to stop people from having to scroll up too much
         prefill:true,
         },
         function(newElements){
