@@ -30,11 +30,7 @@
     <meta name="color:Text" content="#000000"/>
     <meta name="color:Link" content="#9C9C9C"/>
     <meta name="color:Link Hover" content="#363636"/>
-    <meta name="color:Link Visited" content="#000000"/>
 
-    <meta name="font:Site Font" content=""/>
-
-    <meta name="text:Footer Text" content=""/>
     <meta name="text:Google Analytics ID" content=""/>
 
     <meta name="if:Show Archive" content="1"/>
@@ -79,9 +75,6 @@
       }
       a:hover{
         color:{color:Link Hover};
-      }
-      a:visited{
-        color:{color:Link Visited};
       }
 
     a,u,ins {
@@ -340,8 +333,14 @@
         margin-top: 0 !important;
     }
 
-    article blockquote img {
-        width: auto;
+    article.type_photo img,
+    article.type_link img,
+    article.type_text img,
+    article figure img,
+    article blockquote img{
+        width: 100%;
+        height: auto;
+        vertical-align: bottom;
     }
 
     .pagination-wrap {
@@ -371,17 +370,6 @@
         width: 100%;
         margin-top: 12px;
     }
-
-    /*
-    .post-meta_home:before {
-        content: "";
-        position: absolute;
-        width: 6px;
-        height: 1px;
-        display: block;
-        background: #363636;
-    }
-    */
 
     .post-meta_home li{
         padding-top: 6px;
@@ -519,9 +507,6 @@
         padding-top: 0;
     }
 
-
-    /* chat */
-
     /* audio */
 
     article.type_audio embed {
@@ -579,7 +564,7 @@
 
     footer .social-link li {
         display: inline-block;
-        margin-right: 6px;
+        margin-right: 12px;
     }
 
     footer .social-link .social-instagram {
@@ -973,7 +958,7 @@ $(function() {
         navSelector: ".pagination",
         nextSelector: ".pagination a:last-child",
         itemSelector: "article",
-        bufferPx: 2400, //Since photosets can get quite long, and this is a 3 column theme, the buffer is extra long to stop people from having to scroll up too much
+        bufferPx: 1800, //Since photosets can get quite long, and this is a 3 column theme, the buffer is extra long to stop people from having to scroll up too much
         prefill:true,
         },
         function(newElements){
