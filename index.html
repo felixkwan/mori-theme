@@ -287,7 +287,7 @@
     article .content-bk {
         margin: 0 8px;
         position: relative;
-        background: #f1f1f1;
+        background: #f5f5f5;
         padding: 12px 12px;
     }
 
@@ -955,9 +955,9 @@ $(function() {
     $(window).load(function(){      //Waits a sec before running infinite scroll
         $tumblelog.infinitescroll({ //Initialises the infinite scroll
         navSelector: ".pagination",
-        nextSelector: ".pagination a:last-child",
+        nextSelector: ".pagination .previous-page a",
         itemSelector: "article",
-        bufferPx: 1800, //Since photosets can get quite long, and this is a 3 column theme, the buffer is extra long to stop people from having to scroll up too much
+        bufferPx: 3000, //Since photosets can get quite long, and this is a 3 column theme, the buffer is extra long to stop people from having to scroll up too much
         prefill:true,
         },
         function(newElements){
