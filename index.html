@@ -949,8 +949,8 @@ $(function() {
         content.style.opacity = "1";    //appears the content block once initial images are loaded
     });
     imgLoad.on('progress', function(instance, image){
-        $(image.img).closest('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.masonry('layout');}});    //Grids up photosets nicely
-        msnry.masonry('layout');
+        $(image.img).closest('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.layout();}});    //Grids up photosets nicely
+        msnry.layout();
     });
     $(window).load(function(){      //Waits a sec before running infinite scroll
         $tumblelog.infinitescroll({ //Initialises the infinite scroll
@@ -964,8 +964,8 @@ $(function() {
             var $newElems = $(newElements).css({opacity:0});
             $newElems.imagesLoaded(function(){
                 msnry.appended($newElems);
-                $('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.masonry('layout');}});
-                msnry.masonry('layout');
+                $('.photoset-grid-lightbox').photosetGrid({gutter:'2px', onComplete:function(){msnry.layout();}});
+                msnry.layout();
                 $newElems.animate({opacity:1});
             });
         });
