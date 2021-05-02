@@ -367,13 +367,18 @@
     .post-meta_home {
         width: 100%;
         margin-top: 12px;
+        display: flex;
+        flex-direction: row;
     }
 
     .post-meta_home li{
         padding-top: 6px;
         font-size: 0.9em;
-        display: inline-block;
         margin-right: 6px;
+    }
+    
+    .post-meta_home li.pb-5 {
+        padding-bottom: 2px;
     }
 
     @media only screen and (min-width: 768px) {
@@ -825,9 +830,9 @@
                     {block:Date}
                     {block:IndexPage}
 			<ul class="post-meta_home timeago">
-				<li><a href="{Permalink}">{TimeAgo}</a></li>
-				<li>/</li>
-				<li><a href="{ReblogURL}">Reblog</a></li>
+			    <li>{LikeButton size="13" color="grey"}</li>
+				<li class="pb-5"><a href="{Permalink}">{TimeAgo}</a></li>
+				<li class="pb-5"><a href="{ReblogURL}">Reblog</a></li>
 			</ul>
 			{/block:IndexPage}
                     {/block:Date}
